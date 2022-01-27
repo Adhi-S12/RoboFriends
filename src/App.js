@@ -1,40 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import CardList from './components/CardList';
 import SearchBox from './components/SearchBox';
 import Scroll from './components/Scroll';
 import ErrorBoundary from './components/ErrorBoundary';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchRobots } from './actions';
 
 const App = () => {
-	const [ robots, setRobots ] = useState([]);
-	const [ searchField, setSearchField ] = useState('');
+	const { searchField } = useSelector((state) => state.searchRobots);
+	const { robots, isPending, error } = useSelector((state) => state.fetchRobots);
+	const dispatch = useDispatch();
 
-	const fetchData = async () => {
-		const res = await fetch('https://jsonplaceholder.typicode.com/users');
-		const users = await res.json();
-		setRobots(users);
-	};
-
-	const onSearchChange = (e) => {
-		setSearchField(e.target.value);
-	};
-
-	useEffect(() => {
-		fetchData();
-	}, []);
+	useEffect(
+		() => {
+			dispatch(fetchRobots());
+		},
+		[ dispatch ]
+	);
 
 	const filteredRobots = robots.filter((robot) => {
 		return robot.name.toLowerCase().includes(searchField.toLowerCase());
 	});
-	if (robots.length === 0) {
+	if (isPending) {
 		return <h1 className="tc">Loading...</h1>;
+	} else if (error) {
+		return <h1>Oops something went wrong. Please refresh your browser</h1>;
 	} else {
 		return (
-			<div style={{ textAlign: 'center' }}>
+			<div style={{ textAlign: 'center', padding: '0 40px' }}>
 				<h1 className="f1" style={{ marginTop: 0, paddingTop: '30px' }}>
 					RoboFriends
 				</h1>
-				<SearchBox searchChange={onSearchChange} />
+				<SearchBox />
 				<Scroll>
 					<ErrorBoundary>
 						<CardList robots={filteredRobots} />
