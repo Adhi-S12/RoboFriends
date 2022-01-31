@@ -6,7 +6,6 @@ export const setSearchField = (text) => ({
 });
 
 export const fetchRobots = () => (dispatch) => {
-	console.log('Enters');
 	dispatch({ type: FETCH_ROBOTS_PENDING });
 
 	fetch('https://jsonplaceholder.typicode.com/users')

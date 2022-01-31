@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
+import Header from './components/Header';
 import CardList from './components/CardList';
 import SearchBox from './components/SearchBox';
 import Scroll from './components/Scroll';
@@ -29,9 +30,7 @@ const App = () => {
 	} else {
 		return (
 			<div style={{ textAlign: 'center', padding: '0 40px' }}>
-				<h1 className="f1" style={{ marginTop: 0, paddingTop: '30px' }}>
-					RoboFriends
-				</h1>
+				<Header />
 				<SearchBox />
 				<Scroll>
 					<ErrorBoundary>
