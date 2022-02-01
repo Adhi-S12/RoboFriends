@@ -3,17 +3,22 @@
 	"name": "RoboFriends app created with react and redux",
 	"icons": [
 		{
-			"src": "favicon.ico",
-			"sizes": "64x64",
+			"src": "favicon-16x16",
+			"sizes": "16x16",
 			"type": "image/x-icon"
 		},
 		{
-			"src": "logo192.png",
+			"src": "favicon-32x32",
+			"sizes": "32x32",
+			"type": "image/x-icon"
+		},
+		{
+			"src": "android-chrome-192x192.png",
 			"type": "image/png",
 			"sizes": "192x192"
 		},
 		{
-			"src": "logo512.png",
+			"src": "android-chrome-512x512.png",
 			"type": "image/png",
 			"sizes": "512x512"
 		}
