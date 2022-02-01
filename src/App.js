@@ -26,7 +26,7 @@ const App = () => {
 	if (isPending) {
 		return <h1 className="tc">Loading...</h1>;
 	} else if (error) {
-		return <h1>Oops something went wrong. Please refresh your browser</h1>;
+		return <h1 style={{ textAlign: 'center' }}>Oops something went wrong. Please refresh your browser</h1>;
 	} else {
 		return (
 			<div style={{ textAlign: 'center', padding: '0 40px' }}>
