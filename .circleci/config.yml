@@ -1,8 +1,21 @@
 version: 2
 jobs:
-  build:
+  bobby:
     docker:
       - image: circleci/ruby:2.4.1 # the primary container, where your job's commands are run
     steps:
       - checkout 
       - run: echo "hello world" 
+  sally:
+    docker:
+      - image: circleci/ruby:2.4.1 # the primary container, where your job's commands are run
+    steps:
+      - checkout 
+      - run: echo "Double trouble" 
+  workflows:
+    version: 2
+    bobby_sally:
+      jobs:
+        - bobby
+        - sally
+    
